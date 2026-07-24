@@ -1,0 +1,9 @@
+error.txt
+files.txt
+list.txt
+location.txt
+notes.txt
+output.txt
+practice.txt
+result.txt
+result2.txt
