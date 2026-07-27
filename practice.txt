@@ -1,0 +1,8 @@
+
+
+touch file1.txt file2.txt notes.txt
+mkdir demo
+
+find . -type f
+find . -type d
+find . -name "*.txt"
