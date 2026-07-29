@@ -1,0 +1,58 @@
+##Day-6:learning files
+
+devuser@KM-PC:~$ cd ~/linux-learning
+devuser@KM-PC:~/linux-learning$ mkdir Day-7
+devuser@KM-PC:~/linux-learning$ cd Day-7
+devuser@KM-PC:~/linux-learning/Day-7$ file practice.txt
+practice.txt: cannot open `practice.txt' (No such file or directory)
+devuser@KM-PC:~/linux-learning/Day-7$ vim practice.txt
+devuser@KM-PC:~/linux-learning/Day-7$ file practice.txt
+practice.txt: ASCII text
+devuser@KM-PC:~/linux-learning/Day-7$ file .
+.: directory
+devuser@KM-PC:~/linux-learning/Day-7$ stat practice.txt
+  File: practice.txt
+  Size: 100             Blocks: 8          IO Block: 4096   regular file
+Device: 8,48    Inode: 58623       Links: 1
+Access: (0644/-rw-r--r--)  Uid: ( 1000/ devuser)   Gid: ( 1000/ devuser)
+Access: 2026-07-29 20:07:21.852705930 +0545
+Modify: 2026-07-29 20:07:13.411770111 +0545
+Change: 2026-07-29 20:07:13.411770111 +0545
+ Birth: 2026-07-29 20:07:13.411770111 +0545
+devuser@KM-PC:~/linux-learning/Day-7$ pwd
+/home/devuser/linux-learning/Day-7
+devuser@KM-PC:~/linux-learning/Day-7$ basename /home/devuser/linux-learning/Day-7
+Day-7
+devuser@KM-PC:~/linux-learning/Day-7$ dirname /home/devuser/linux-learning/Day-7
+/home/devuser/linux-learning
+devuser@KM-PC:~/linux-learning/Day-7$ realpath practice.txt
+/home/devuser/linux-learning/Day-7/practice.txt
+devuser@KM-PC:~/linux-learning/Day-7$ ls -s practice.txt practice_link.txt
+ls: cannot access 'practice_link.txt': No such file or directory
+4 practice.txt
+devuser@KM-PC:~/linux-learning/Day-7$ ls -l
+total 4
+-rw-r--r-- 1 devuser devuser 100 Jul 29 20:07 practice.txt
+devuser@KM-PC:~/linux-learning/Day-7$ touch practice_link.txt
+devuser@KM-PC:~/linux-learning/Day-7$ ls -s practice.txt practice_link.txt
+4 practice.txt  0 practice_link.txt
+devuser@KM-PC:~/linux-learning/Day-7$ ls -l
+total 4
+-rw-r--r-- 1 devuser devuser 100 Jul 29 20:07 practice.txt
+-rw-r--r-- 1 devuser devuser   0 Jul 29 20:15 practice_link.txt
+devuser@KM-PC:~/linux-learning/Day-7$ readlink practice_link.txt
+devuser@KM-PC:~/linux-learning/Day-7$ ln  practice.txt practice_link.txt
+ln: failed to create hard link 'practice_link.txt': File exists
+devuser@KM-PC:~/linux-learning/Day-7$ ln  practice.txt hard_link.txt
+devuser@KM-PC:~/linux-learning/Day-7$ ls -li
+total 8
+58623 -rw-r--r-- 2 devuser devuser 100 Jul 29 20:07 hard_link.txt
+58623 -rw-r--r-- 2 devuser devuser 100 Jul 29 20:07 practice.txt
+ 1962 -rw-r--r-- 1 devuser devuser   0 Jul 29 20:15 practice_link.txt
+devuser@KM-PC:~/linux-learning/Day-7$ tree
+.
+├── hard_link.txt
+├── practice.txt
+└── practice_link.txt
+
+1 directory, 3 files
