@@ -1,0 +1,33 @@
+!#/bin/bash
+## Day-8:learning linux commands
+
+#find (advanced commands)
+- dd if=dev/zero of =large.bin bs=1k count=100
+->It creates a 100KB FILE for process
+- find . -size +50k
+-> find files more than 50kb
+- find . -size -50k
+-> find files less than 50kb
+similarly
+- find . -empty
+- find . -mtime -1
+- find . -mtime +7
+
+#Delete matching files 
+- find . -name "*.log" -delete
+-> Delete all matching log files
+
+##tar command
+- tar -cvf project.tar f1.txt f2.txt f3.txt
+- tar -tvf project.tar
+- tar -xvf project.tar
+(important symbols)
+c-create a new archive
+v-verbose
+f-filename of archive
+x-extract
+
+# gzip(compresses the file)
+- gzip f1 for compression
+- gunzip f1.gz for decompression
+- gzip -k sample.txt for keeping both original and compressed files
