@@ -1,0 +1,55 @@
+devuser@KM-PC:~$ ~/linux-learning
+-bash: /home/devuser/linux-learning: Is a directory
+devuser@KM-PC:~$ cd ~/linux-learning
+devuser@KM-PC:~/linux-learning$ mkdir Day-9
+devuser@KM-PC:~/linux-learning$ cd Day-9
+devuser@KM-PC:~/linux-learning/Day-9$ cat > employee.txt
+alice Devops
+bob liux
+Charlie linux
+Eve Docker
+Frank Kubernetes
+Alice python
+123 testing
+devuser@KM-PC:~/linux-learning/Day-9$ grep -i alice employee.txt
+alice Devops
+Alice python
+devuser@KM-PC:~/linux-learning/Day-9$ grep -n alice employee.txt
+1:alice Devops
+devuser@KM-PC:~/linux-learning/Day-9$ grep -ni alice employee.txt
+1:alice Devops
+6:Alice python
+devuser@KM-PC:~/linux-learning/Day-9$ grep -c alice employee.txt
+1
+devuser@KM-PC:~/linux-learning/Day-9$ grep -ci alice employee.txt
+2
+devuser@KM-PC:~/linux-learning/Day-9$ grep -v alice employee.txt
+bob liux
+Charlie linux
+Eve Docker
+Frank Kubernetes
+Alice python
+123 testing
+devuser@KM-PC:~/linux-learning/Day-9$ grep -w alice employee.txt
+alice Devops
+devuser@KM-PC:~/linux-learning/Day-9$ grep -E "linux|Docker" employee.txt
+Charlie linux
+Eve Docker
+devuser@KM-PC:~/linux-learning/Day-9$ mkdir logs
+devuser@KM-PC:~/linux-learning/Day-9$ echo "ERROR: Disk full" > logs/server1.log
+devuser@KM-PC:~/linux-learning/Day-9$ echo "INFO: Service Started" > logs/server2.log
+devuser@KM-PC:~/linux-learning/Day-9$ mkdir logs/archive
+devuser@KM-PC:~/linux-learning/Day-9$ echo "ERROR: Permission Denied" > logs/archive/server3.log
+devuser@KM-PC:~/linux-learning/Day-9$ grep -r "ERROR" logs
+logs/server1.log:ERROR: Disk full
+logs/archive/server3.log:ERROR: Permission Denied
+devuser@KM-PC:~/linux-learning/Day-9$ grep -l "ERROR" logs/*
+grep: logs/archive: Is a directory
+logs/server1.log
+devuser@KM-PC:~/linux-learning/Day-9$ grep -rl "ERROR" logs/*
+logs/archive/server3.log
+logs/server1.log
+devuser@KM-PC:~/linux-learning/Day-9$ grep -L "ERROR" logs/*.log
+logs/server2.log
+devuser@KM-PC:~/linux-learning/Day-9$ grep -o "linux" employee.txt
+linux
