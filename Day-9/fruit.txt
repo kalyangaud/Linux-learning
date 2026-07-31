@@ -1,0 +1,3 @@
+APPLE APPLE banana
+banana APPLE APPLE
+orange APPLE mango

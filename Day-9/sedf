@@ -1,0 +1,72 @@
+# Sed some advanced commands
+
+devuser@KM-PC:~/linux-learning/Day-9$ cat fruit.txt
+cat: fruit.txt: No such file or directory
+devuser@KM-PC:~/linux-learning/Day-9$ cat > fruit.txt
+apple apple banana
+banana apple apple
+orange apple mango
+devuser@KM-PC:~/linux-learning/Day-9$ sed 's/apple/Apple/' fruit.txt
+Apple apple banana
+banana Apple apple
+orange Apple mango
+devuser@KM-PC:~/linux-learning/Day-9$ sed 's/apple/Apple/g' fruit.txt
+Apple Apple banana
+banana Apple Apple
+orange Apple mango
+devuser@KM-PC:~/linux-learning/Day-9$ sed '2 s/apple/APPLE/g' fruit.txt
+apple apple banana
+banana APPLE APPLE
+orange apple mango
+devuser@KM-PC:~/linux-learning/Day-9$ sed -n '2p' fruit.txt
+banana apple apple
+devuser@KM-PC:~/linux-learning/Day-9$ sed -n '2d' fruit.txt
+devuser@KM-PC:~/linux-learning/Day-9$ sed  '2d' fruit.txt
+apple apple banana
+orange apple mango
+devuser@KM-PC:~/linux-learning/Day-9$ sed  '2i\*** Employee List***' employee.txt
+alice Devops
+*** Employee List***
+bob liux
+Charlie linux
+Eve Docker
+Frank Kubernetes
+Alice python
+123 testing
+devuser@KM-PC:~/linux-learning/Day-9$ sed  '2a\***End of bob linux line***' employee.txt
+alice Devops
+bob liux
+***End of bob linux line***
+Charlie linux
+Eve Docker
+Frank Kubernetes
+Alice python
+123 testing
+devuser@KM-PC:~/linux-learning/Day-9$ sed  '3c\Charlie Aura' employee.txt
+alice Devops
+bob liux
+Charlie Aura
+Eve Docker
+Frank Kubernetes
+Alice python
+123 testing
+devuser@KM-PC:~/linux-learning/Day-9$ sed -i 's/apple/APPLE/g' fruit.txt
+devuser@KM-PC:~/linux-learning/Day-9$ cat employee.txt
+alice Devops
+bob liux
+Charlie linux
+Eve Docker
+Frank Kubernetes
+Alice python
+123 testing
+devuser@KM-PC:~/linux-learning/Day-9$ cat fruit.txt
+APPLE APPLE banana
+banana APPLE APPLE
+orange APPLE mango
+devuser@KM-PC:~/linux-learning/Day-9$ sed -e '1d' -e 's/Eve/Wife/' employee.txt
+bob liux
+Charlie linux
+Wife Docker
+Frank Kubernetes
+Alice python
+123 testing
