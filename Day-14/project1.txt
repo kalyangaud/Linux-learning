@@ -1,0 +1,90 @@
+# Library Book Record System -Project_1
+
+FILE="library.txt"
+
+touch $FILE
+
+add_book() {
+    read -p "Book ID: " id
+    if grep -q "^$id|" $FILE; then
+        echo "Book already exists!"
+        return
+    fi
+
+    read -p "Book Name: " name
+    read -p "Author: " author
+
+    echo "$id|$name|$author" >> $FILE
+    echo "Book Added Successfully."
+}
+
+display_books() {
+    if [ ! -s $FILE ]; then
+        echo "No books available."
+        return
+    fi
+
+    echo "////////////////////////////////////"
+    printf "%-10s %-20s %-20s\n" "ID" "BOOK" "AUTHOR"
+    echo "************************************"
+
+    while IFS="|" read id name author
+    do
+        printf "%-10s %-20s %-20s\n" "$id" "$name" "$author"
+    done < $FILE
+}
+
+search_book() {
+    read -p "Enter Book ID: " id
+    if grep -q "^$id|" $FILE; then
+        grep "^$id|" $FILE | while IFS="|" read i n a
+        do
+            echo "ID     : $i"
+            echo "Book   : $n"
+            echo "Author : $a"
+        done
+    else
+        echo "Book not found."
+    fi
+}
+
+delete_book() {
+    read -p "Enter Book ID: " id
+
+    if grep -q "^$id|" $FILE; then
+        grep -v "^$id|" $FILE > temp.txt
+        mv temp.txt $FILE
+        echo "Book Deleted."
+    else
+        echo "Book not found."
+    fi
+}
+
+count_books() {
+    total=$(wc -l < $FILE)
+    echo "Total Books = $total"
+}
+
+while true
+do
+    echo
+    echo " LIBRARY MANAGEMENT SYSTEM"
+    echo "1. Add Book"
+    echo "2. Display Books"
+    echo "3. Search Book"
+    echo "4. Delete Book"
+    echo "5. Count Books"
+    echo "6. Exit"
+
+    read -p "Enter Choice: " ch
+
+    case $ch in
+        1) add_book ;;
+        2) display_books ;;
+        3) search_book ;;
+        4) delete_book ;;
+        5) count_books ;;
+        6) echo "Thank You!"; exit ;;
+        *) echo "Invalid Choice!" ;;
+    esac
+done
