@@ -5,7 +5,7 @@ task
 
 code_clone(){
 	echo "Cloning the Django app...."
-	git clone https://github.com/gaudkalyan/django-notes-app.git
+	git clone https://github.com/LondheShubham153/django-notes-app.git
 }
 
 install_requirements(){
